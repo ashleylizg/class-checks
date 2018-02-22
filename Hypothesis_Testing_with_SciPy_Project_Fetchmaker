@@ -6,7 +6,7 @@ from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from scipy.stats import chi2_contingency
 from scipy.stats import ttest_ind
 
-# Investigation of rottweiler tail length. 
+# Investigation of rottweiler tail length using average and standard deviation.
 
 rottweiler_tl = fetchmaker.get_tail_length("rottweiler")
 
