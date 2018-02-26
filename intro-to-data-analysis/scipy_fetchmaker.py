@@ -10,8 +10,8 @@ from scipy.stats import ttest_ind
 
 rottweiler_tl = fetchmaker.get_tail_length("rottweiler")
 
-print ("The average rottweiler tail length is: {}".format(np.mean(rottweiler_tl)))
-print ("The standard deviation for rottweiler tail length is: {}".format(np.std(rottweiler_tl)))
+print("The average rottweiler tail length is: {}".format(np.mean(rottweiler_tl)))
+print("The standard deviation for rottweiler tail length is: {}".format(np.std(rottweiler_tl)))
 
 # Investigation of how many whippets are rescues out of the total number, assuming the rate is predicted to be about 8%. 
 
@@ -22,7 +22,7 @@ num_whippet_rescue = np.count_nonzero(whippet_rescue)
 num_whippets = np.size(whippet_rescue)
 
 pval = binom_test(num_whippet_rescue, num_whippets, 0.08)
-print ("The P-value for the number of whippet rescues and number of total whippets is: {}".format(pval))
+print("The P-value for the number of whippet rescues and number of total whippets is: {}".format(pval))
 
 # Investigation of weight differences between whippets, terriers, and pitbulls.
 
@@ -35,17 +35,17 @@ terrier_weight_avg = np.mean(terrier_weight)
 pitbull_weight = fetchmaker.get_weight("pitbull")
 pitbull_weight_avg = np.mean(pitbull_weight)
 
-print ("The average whippet weight is: {}".format(whippet_weight_avg))
-print ("The average terrier weight is: {}".format(terrier_weight_avg))
-print ("The average pitbull weight is: {}".format(pitbull_weight_avg))
+print("The average whippet weight is: {}".format(whippet_weight_avg))
+print("The average terrier weight is: {}".format(terrier_weight_avg))
+print("The average pitbull weight is: {}".format(pitbull_weight_avg))
 
 fstat, pval = f_oneway(whippet_weight, terrier_weight, pitbull_weight)
-print ("The p-value for weights of whippets, terriers, and pitbulls: {}".format(pval))
+print("The p-value for weights of whippets, terriers, and pitbulls: {}".format(pval))
 
 dog_breeds = np.concatenate([whippet_weight, terrier_weight, pitbull_weight])
 labels = ['whippet']*len(whippet_weight) + ['terrier']*len(terrier_weight) + ['pitbull']*len(pitbull_weight)
 tukey_results = pairwise_tukeyhsd(dog_breeds, labels, 0.05)
-print (tukey_results)
+print(tukey_results)
 
 # Investigation of color differences between poodles and shihtzus.
 
@@ -67,7 +67,7 @@ white_shihtzus = np.count_nonzero(shihtzu_colors == "white")
 color_table = [[black_poodles, black_shihtzus], [brown_poodles, brown_shihtzus], [gold_poodles, gold_shihtzus], [grey_poodles, grey_shihtzus], [white_poodles, white_shihtzus]]
 
 _ , pval, _ , _ = chi2_contingency(color_table)
-print ("The p-value for comparing dog colors is: {}".format(pval))
+print("The p-value for comparing dog colors is: {}".format(pval))
 
 # Investigation of age difference between chihuahuas and greyhounds in the data set.
 
@@ -76,9 +76,9 @@ grey_age = fetchmaker.get_age("greyhound")
 
 age_chih_grey_results = ttest_ind(chih_age, grey_age)
 if age_chih_grey_results < 0.05:
-  print ("Ages of chihuahuas and greyhounds are different!")
+  print("Ages of chihuahuas and greyhounds are different!")
 else:
-  print ("Ages of chihuahuas and greyhounds are not that different.")
+  print("Ages of chihuahuas and greyhounds are not that different.")
   
 # Investigation of weight differences between all breeds in the sample.
   
@@ -100,14 +100,14 @@ pitbull_weight = fetchmaker.get_weight("pitbull")
 
 fstat, pval = f_oneway(poodle_weight, rottweiler_weight, whippet_weight, greyhound_weight, terrier_weight, chihuahua_weight, shihtzu_weight, pitbull_weight)
 if pval < 0.05:
-  print ("The p-value is: {}".format(pval))
-  print ("Investigate further with a Tukey's Range Test!")
+  print("The p-value is: {}".format(pval))
+  print("Investigate further with a Tukey's Range Test!")
 else:
-  print ("The p-value is: {}".format(pval))
-  print ("No need to investigate further, the breed weights are too similar.")
+  print("The p-value is: {}".format(pval))
+  print("No need to investigate further, the breed weights are too similar.")
   
 breed_weights = np.concatenate([poodle_weight, rottweiler_weight, whippet_weight, greyhound_weight, terrier_weight, chihuahua_weight, shihtzu_weight, pitbull_weight])
 labels_for_breeds = ['poodle']*len(poodle_weight) + ['rottweiler']*len(rottweiler_weight) + ['whippet']*len(whippet_weight) + ['greyhound']*len(greyhound_weight) + ['terrier']*len(terrier_weight) + ['chihuahua']*len(chihuahua_weight) + ['shihtzu']*len(shihtzu_weight) + ['pitbull']*len(pitbull_weight) 
 
 tukey_weight_results = pairwise_tukeyhsd(breed_weights, labels_for_breeds, 0.05)
-print (tukey_weight_results)
+print(tukey_weight_results)
