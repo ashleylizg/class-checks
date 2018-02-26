@@ -43,5 +43,5 @@ b_day_pivot['Percent_of_Users'] = b_day_pivot[True] / (b_day_pivot[True] + b_day
 
 b_day_pivot['Percent_Users_Rounded'] = b_day_pivot.Percent_of_Users.apply(round_number)
 
-print a_day_pivot
-print b_day_pivot
+print (a_day_pivot)
+print (b_day_pivot)
