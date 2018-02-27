@@ -40,7 +40,7 @@ df['is_purchase']= df.click_day.apply(lambda x: 'Purchase' if pd.notnull(x) else
 # **Hint**: Group by `group` and `is_purchase` and the function `count` on the column `user_id`.
 
 purchase_counts = df.groupby(['is_purchase', 'group']).user_id.count()
-print (purchase_counts)
+print(purchase_counts)
 
 # This data is *categorical* and there are *more than 2* conditions, so we'll want to use a chi-squared test to see if there is a significant difference between the three conditions.
 # 
@@ -61,7 +61,7 @@ contingency = [[316, 1350],
 # Recall that the *p-value* is the second output of `chi2_contingency`.
 
 _, pval, _, _ = chi2_contingency(contingency)
-print ("The p-value for chi squared contingency comparing group purchases is: %s"%(pval))
+print("The p-value for chi squared contingency comparing group purchases is: %s"%(pval))
 
 # Great! It looks like a significantly greater portion of users from Group A made a purchase.
 
@@ -84,7 +84,7 @@ print ("The p-value for chi squared contingency comparing group purchases is: %s
 # Hint: Look at the length of `df`.
 
 site_visitors = len(df)
-print ("The number of site visitors is: %d"%(site_visitors))
+print("The number of site visitors is: %d"%(site_visitors))
 
 """ Let's assume that this is how many visitors we generally get each week. 
 Given that, calculate the percent of visitors who would need to purchase the 
@@ -95,29 +95,29 @@ generate \$1000 per week.
 # Then divide by the number of people who visit the site each week.
 
 ppl_needed_at_99 = 1000 / 0.99
-print ("%s people need to purchase a \$0.99 upgrade to generate \$1000"%(ppl_needed_at_99))
+print("%s people need to purchase a \$0.99 upgrade to generate \$1000"%(ppl_needed_at_99))
 
 total_for_99 = ppl_needed_at_99 / 4998
-print ("The assumed p-value for the \$0.99 price point is: %s"%(total_for_99))
+print("The assumed p-value for the \$0.99 price point is: %s"%(total_for_99))
 
 # Calculate the number of people who would need to purchase a $1.99 upgrade in order to generate $1000.
 # Then divide by the number of people who visit the site each week.
 
 ppl_needed_at_1_99 = 1000 / 1.99
-print ("%s people need to purchase a \$1.99 upgrade to generate \$1000"% \
+print("%s people need to purchase a \$1.99 upgrade to generate \$1000"% \
 (ppl_needed_at_1_99))
 
 total_for_1_99 = ppl_needed_at_1_99 / 4998
-print ("The assumed p-value for the \$1.99 price point is: %s"%(total_for_1_99))
+print("The assumed p-value for the \$1.99 price point is: %s"%(total_for_1_99))
 
 # Calculate the number of people who would need to purchase a $1.99 upgrade in order to generate $1000.
 # Then divide by the number of people who visit the site each week.
 
 ppl_needed_at_4_99 = 1000 / 4.99
-print ("%s people need to purchase a \$1.99 upgrade to generate \$1000"%(ppl_needed_at_4_99))
+print("%s people need to purchase a \$1.99 upgrade to generate \$1000"%(ppl_needed_at_4_99))
 
 total_for_4_99 = ppl_needed_at_4_99 / 4998
-print ("The assumed p-value for the \$4.99 price point is: %s"%(total_for_4_99))
+print("The assumed p-value for the \$4.99 price point is: %s"%(total_for_4_99))
 
 # Note that you need a smaller percentage of purchases for higher price points.
 # 
@@ -133,15 +133,15 @@ print ("The assumed p-value for the \$4.99 price point is: %s"%(total_for_4_99))
 
 # Test group A here
 pval_a = binom_test(316, n=1666, p=0.20)
-print ("The p-value for Group A:%s"%(pval_a))
+print("The p-value for Group A:%s"%(pval_a))
 
 # Test group B here
 pval_b = binom_test(183, n=1666, p=0.10)
-print ("The p-value for Group B:%s"%(pval_b))
+print("The p-value for Group B:%s"%(pval_b))
 
 # Test group C here
 pval_c = binom_test(83, n=1666, p=0.04)
-print ("The p-value for Group C:%s"%(pval_c))
+print("The p-value for Group C:%s"%(pval_c))
 
 # If any of the groups passed the binomial test with $p < 0.05$, then we can be confident that enough people will buy the upgrade package at that price point to justify the feature.
 # 
